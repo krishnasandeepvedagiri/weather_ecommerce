@@ -1,0 +1,7 @@
+If you open a separate command prompt or terminal, activate the environment by running .venv\Scripts\Activate.ps1 .You know the environment is activated when the command prompt shows (.venv) at the beginning
+
+(on_delete=models.CASCADE)
+CASCADE: When the referenced object is deleted, also delete the objects that have references to it (when you remove a blog post for instance, you might want to delete comments as well). SQL equivalent: CASCADE.
+
+(on_delete=models.SET_NULL)
+SET_NULL: When we delete product from website, we shouldnt delete the alreday ordered item for the customer, so we add null to the product.
