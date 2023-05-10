@@ -9,10 +9,10 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-# Create your views here.
 
 from django.http import JsonResponse
 from store.models import Product
+# Create your views here.
 
 def my_api_view(request):
     data = Product.objects.all().values()
