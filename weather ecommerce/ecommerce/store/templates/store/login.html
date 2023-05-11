@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    /* Center the login container */
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* Style the header */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Style the form */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 300px;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the form inputs and labels */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    /* Style the login button */
+    .btn {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0069d9;
+    }
+
+    /* Style the "New user?" link */
+    .new-user {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .new-user a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .new-user a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Login</h1>
+    <form method="POST" action="{% url 'login' %}">
+      {% csrf_token %}
+      <!-- {{ form.as_p }} -->
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+    <p class="new-user">New user? <a href="{% url 'store' %}signup/">Create an account</a></p>
+  </div>
+</body>
+</html>

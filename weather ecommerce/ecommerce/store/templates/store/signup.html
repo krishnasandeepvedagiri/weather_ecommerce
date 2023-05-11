@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New User Account</title>
+  <style>
+    /* Center the signup container */
+    .signup-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    
+    /* Style the header */
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* Style the form */
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Style the form inputs and labels */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+    
+    label {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    input {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        width: 100%;
+    }
+    
+    /* Style the signup button */
+    .btn {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+    
+    .btn:hover {
+        background-color: #0069d9;
+    }
+    
+    /* Style the "Log in" link */
+    .login-link {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+    }
+    
+    .login-link a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h1>Create a New Account</h1>
+    <form method="POST" action="{% url 'signup' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password1">Password:</label>
+        <input type="password" id="password1" name="password1" required>
+      </div>
+      <div class="form-group">
+        <label for="password2">Confirm Password:</label>
+        <input type="password" id="password2" name="password2" required>
+      </div>
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+    <p class="login-link">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+
+
+    <script>
+      <!-- const form = document.getElementById('signup-form'); -->
+      const usernameInput = document.getElementById('username');
+      const emailInput = document.getElementById('email');
+      const password1Input = document.getElementById('password1');
+      const password2Input = document.getElementById('password2');
+    
+      addEventListener('submit', (event) => {
+        let errors = [];
+        if (usernameInput.value.trim() === '') {
+          errors.push('Username is required.');
+        }
+        if (emailInput.value.trim() === '') {
+          errors.push('Email is required.');
+        } else if (!isValidEmail(emailInput.value)) {
+          errors.push('Invalid email address.');
+        }
+        if (password1Input.value === '') {
+          errors.push('Password is required.');
+        } else if (password1Input.value !== password2Input.value) {
+          errors.push('Passwords do not match.');
+        }
+        if (errors.length > 0) {
+          event.preventDefault();
+          alert(errors.join('\n'));
+        }
+      });
+    
+      function isValidEmail(email) {
+        // Regular expression to check if the email is valid
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+    </script>
+
+
+  </div>
+</body>
+</html>
